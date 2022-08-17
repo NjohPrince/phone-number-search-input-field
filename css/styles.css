@@ -10,7 +10,7 @@
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
@@ -57,8 +57,8 @@ select:-webkit-autofill:focus {
 }
 
 .search__wrapper {
-    width: 100%;
-    position: relative;
+  width: 100%;
+  position: relative;
 }
 
 .input__wrapper input {
@@ -79,47 +79,71 @@ select:-webkit-autofill:focus {
 }
 
 .selected__code {
-    position: absolute;
-    left: 3rem;
+  position: absolute;
+  left: 3rem;
 }
 
 .selected__code img,
 .suggestions__list img {
-    border-radius: 5px;
-    margin-right: 0.3rem;
+  border-radius: 5px;
+  margin-right: 0.3rem;
 }
 
 .suggestions__list .s_code {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 .selected__code h4,
 .suggestions__list h4 {
-    font-size: 1.8rem;
+  font-size: 1.8rem;
 }
 
 .suggestions__list {
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 30px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 100%;
 }
 
 .suggestions__list > div {
-    padding: 1.2rem;
-    width: fit-content;
-    cursor: pointer;
-    width: 100%;
-    align-items: center;
+  padding: 1.2rem;
+  width: fit-content;
+  cursor: pointer;
+  width: 100%;
+  align-items: center;
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+}
+
+.suggestions__list > div:hover {
+  background: #f4f4f4;
 }
 
 .suggestions__list > div:not(:last-of-type) {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.suggestions__list input {
+  border-radius: 28px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  text-align: center;
+  padding-left: 0;
+  border: 0.2pc solid rgba(0, 0, 0, 0.1);
+}
+
+.suggestions__list input:focus,
+.suggestions__list input:focus-within {
+  border: 0.3pc solid rgba(0, 0, 0, 0.1);
+}
+
+.suggestions__list input::placeholder {
+  text-align: center;
 }
 
 @media screen and (max-width: 650px) {
