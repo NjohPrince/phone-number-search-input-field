@@ -51,10 +51,14 @@ select:-webkit-autofill:focus {
   width: 600px;
   padding: 5rem 1rem;
   border-radius: 20px;
-  position: relative;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.search__wrapper {
+    width: 100%;
+    position: relative;
 }
 
 .input__wrapper input {
@@ -79,13 +83,43 @@ select:-webkit-autofill:focus {
     left: 3rem;
 }
 
-.selected__code img {
+.selected__code img,
+.suggestions__list img {
     border-radius: 5px;
     margin-right: 0.3rem;
 }
 
-.selected__code h4 {
+.suggestions__list .s_code {
+    margin-right: 1rem;
+}
+
+.selected__code h4,
+.suggestions__list h4 {
     font-size: 1.8rem;
+}
+
+.suggestions__list {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 100%;
+}
+
+.suggestions__list > div {
+    padding: 1.2rem;
+    width: fit-content;
+    cursor: pointer;
+    width: 100%;
+    align-items: center;
+}
+
+.suggestions__list > div:not(:last-of-type) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (max-width: 650px) {
