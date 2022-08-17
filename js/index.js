@@ -77,7 +77,9 @@ populateSuggestionsList(dataSource);
 let currentDataSource = dataSource;
 
 const setSelectedCountryCode = (index) => {
-
+  // If index is greater than length of current datasource, then we get the country from 
+  // the original data source and not the filtered one. This is for cases when the user
+  // uses the 'Enter' key to select a country.
   const filteredChoice = index > currentDataSource.length? dataSource[index] : currentDataSource[index];
 
   const flagReferenceImg = document.querySelector(".selected__flag");
@@ -89,7 +91,7 @@ const setSelectedCountryCode = (index) => {
   flagReferenceImg.height = "25";
   code.textContent = "+" + filteredChoice.callingCode;
 
-  //Clear the filter field
+  //Clear the filter field after selection is made
   filterField.value = "";
 };
 
@@ -185,6 +187,11 @@ const addEventListenersToSuggestions = () => {
     // console.log("SINGLE_SUGGESTION: ", suggestion);
     suggestion.addEventListener("click", () => {
       // console.log("SELECTED_INDEX: ", index);
+
+      //Countries are given ids at the moment of population so that 
+      //would be a more definitive way of setting the selected country
+      //rather than the index which could change depending on the state of
+      //the filtered array
       setSelectedCountryCode(Number(suggestion.id));
       toggleSuggestionsList();
     });
