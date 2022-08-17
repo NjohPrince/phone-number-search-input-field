@@ -3,9 +3,7 @@
 const filterField = document.querySelector("#filter");
 const contactField = document.querySelector("#contact");
 const suggestionsList = document.querySelector("#data-target");
-const suggestions = document.querySelectorAll(".suggestion");
 const suggestionsListWrapper = document.querySelector("#suggestions__list");
-const selectedCodeWrapper = document.querySelector("selected__code");
 
 let dataArray = {
   contact: "",
@@ -36,19 +34,6 @@ const { contact, filterValue } = dataArray;
 const toggleSuggestionsList = () => {
   suggestionsListWrapper.classList.toggle("show");
 };
-
-// once a suggestion is selected run we fetch the corresponding
-// details from the server and hide the suggestions list
-
-let selectedID = 0;
-
-suggestions.forEach((suggestion, index) => {
-  suggestion.addEventListener("click", () => {
-    let selectesID = 0;
-    
-    toggleSuggestionsList();
-  });
-});
 
 // handling filtering change events
 const getFilterValue = (e) => {
@@ -96,3 +81,34 @@ const populateSuggestionsList = () => {
 };
 
 populateSuggestionsList();
+
+// once a suggestion is selected run we fetch the corresponding
+// details from the server and hide the suggestions list
+
+console.log("SUGGESTIONS_NODELIST: ", document.querySelectorAll(".suggestion"));
+
+document.querySelectorAll(".suggestion").forEach((suggestion, index) => {
+  console.log("SINGLE_SUGGESTION: ", suggestion);
+  suggestion.addEventListener("click", () => {
+    console.log("SELECTED_INDEX: ", index);
+    setSelectedCountryCode(index);
+    toggleSuggestionsList();
+  });
+});
+
+const setSelectedCountryCode = (index) => {
+  const filteredChoice = dataSource[index];
+
+  const flagReferenceImg = document.querySelector(".selected__flag");
+  const code = document.querySelector(".selected__phone__code");
+
+  flagReferenceImg.src = filteredChoice.flag;
+  flagReferenceImg.alt = filteredChoice.name;
+  flagReferenceImg.width = "25";
+  flagReferenceImg.height = "25";
+  code.textContent = "+" + filteredChoice.callingCode;
+};
+
+// set a default country code to be shown here by manipulating the
+// index value
+setSelectedCountryCode(0);
