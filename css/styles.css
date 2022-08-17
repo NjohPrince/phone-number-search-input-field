@@ -1,8 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+}
+
+html {
+    font-size: 62.5%;
 }
 
 body {
@@ -40,10 +48,48 @@ select:-webkit-autofill:focus {
 }
 
 .input__wrapper {
-    width: 600px;
-    padding: 5rem 1rem;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  width: 600px;
+  padding: 5rem 1rem;
+  border-radius: 20px;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.input__wrapper input {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  font-size: 1.8rem;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 35px;
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  padding-left: 10.2rem;
+}
+
+.input__wrapper input:focus,
+.input__wrapper input:focus-within {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.selected__code {
+    position: absolute;
+    left: 3rem;
+}
+
+.selected__code img {
+    border-radius: 5px;
+    margin-right: 0.3rem;
+}
+
+.selected__code h4 {
+    font-size: 1.8rem;
+}
+
+@media screen and (max-width: 650px) {
+  .input__wrapper {
+    width: 100%;
+  }
 }
