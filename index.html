@@ -13,6 +13,7 @@
       <div class="input__wrapper">
         <div class="search__wrapper flex center__items">
           <div
+            onclick="toggleSuggestionsList()"
             style="cursor: pointer;"
             class="selected__code flex center__items"
           >
@@ -30,14 +31,14 @@
             type="text"
             placeholder="Enter phone number"
           />
-          <div class="suggestions__list">
+          <div id="suggestions__list" class="suggestions__list">
             <input
               onkeyup="getFilterValue(event)"
               id="filter"
               type="text"
               placeholder="Enter country or phone code"
             />
-            <div class="flex">
+            <div class="suggestion flex">
               <img
                 src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
                 alt=""
@@ -47,7 +48,7 @@
               <h4 class="s_code">+237</h4>
               <h4 class="s_country">Cameroon</h4>
             </div>
-            <div class="flex">
+            <div class="suggestion flex">
               <img
                 src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
                 alt=""
@@ -57,7 +58,7 @@
               <h4 class="s_code">+237</h4>
               <h4 class="s_country">Cameroon</h4>
             </div>
-            <div class="flex">
+            <div class="suggestion flex">
               <img
                 src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
                 alt=""
