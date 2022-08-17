@@ -69,27 +69,15 @@ const populateSuggestionsList = (dataSource) => {
     suggestionsList.append(suggestion);
   });
 
-  console.log("SUGGESTIONS_LIST: ", suggestionsList);
+  // console.log("SUGGESTIONS_LIST: ", suggestionsList);
 };
 
 populateSuggestionsList(dataSource);
 
-// once a suggestion is selected run we fetch the corresponding
-// details from the server and hide the suggestions list
-
-console.log("SUGGESTIONS_NODELIST: ", document.querySelectorAll(".suggestion"));
-
-document.querySelectorAll(".suggestion").forEach((suggestion, index) => {
-  console.log("SINGLE_SUGGESTION: ", suggestion);
-  suggestion.addEventListener("click", () => {
-    console.log("SELECTED_INDEX: ", index);
-    setSelectedCountryCode(index);
-    toggleSuggestionsList();
-  });
-});
+let currentDataSource = dataSource;
 
 const setSelectedCountryCode = (index) => {
-  const filteredChoice = dataSource[index];
+  const filteredChoice = currentDataSource[index];
 
   const flagReferenceImg = document.querySelector(".selected__flag");
   const code = document.querySelector(".selected__phone__code");
@@ -107,7 +95,7 @@ setSelectedCountryCode(0);
 
 // handling filtering change events
 const getFilterValue = (e) => {
-  console.log("FILTER_VALUE: ", e.target.value);
+  // console.log("FILTER_VALUE: ", e.target.value);
   const filterValue = e.target.value;
 
   if (e.keyCode === 13) {
@@ -160,7 +148,7 @@ const getFilterValue = (e) => {
       });
     }
 
-    console.log("FILTERED_LIST_AFTER_TYPING: ", filteredItems);
+    // console.log("FILTERED_LIST_AFTER_TYPING: ", filteredItems);
     if (
       filteredItems.length === 0 &&
       (filterValue === "" || filterValue === null)
@@ -168,11 +156,40 @@ const getFilterValue = (e) => {
       filteredItems = dataSource;
     }
 
+    currentDataSource = filteredItems;
     populateSuggestionsList(filteredItems);
+    // console.log("CURRENT_DATA_SOURCE: ", currentDataSource);
+    logSuggestionsNodeList();
   } else {
+    currentDataSource = dataSource;
     populateSuggestionsList(dataSource);
+    // console.log("CURRENT_DATA_SOURCE: ", currentDataSource);
+    logSuggestionsNodeList();
   }
 };
+
+// once a suggestion is selected run we fetch the corresponding
+// details from the server and hide the suggestions list
+
+const logSuggestionsNodeList = () => {
+  // document.querySelectorAll(".suggestion").forEach((suggestion, index) => {
+  //   console.log("SINGLE_SUGGESTION: ", suggestion);
+  // });
+  addEventListenersToSuggestions();
+};
+
+const addEventListenersToSuggestions = () => {
+  document.querySelectorAll(".suggestion").forEach((suggestion, index) => {
+    // console.log("SINGLE_SUGGESTION: ", suggestion);
+    suggestion.addEventListener("click", () => {
+      // console.log("SELECTED_INDEX: ", index);
+      setSelectedCountryCode(index);
+      toggleSuggestionsList();
+    });
+  });
+};
+
+addEventListenersToSuggestions();
 
 // handling getting the contact entered
 const getContactValue = (e) => {
