@@ -77,7 +77,10 @@ populateSuggestionsList(dataSource);
 let currentDataSource = dataSource;
 
 const setSelectedCountryCode = (index) => {
-  const filteredChoice = currentDataSource[index];
+  // If index is greater than length of current datasource, then we get the country from 
+  // the original data source and not the filtered one. This is for cases when the user
+  // uses the 'Enter' key to select a country.
+  const filteredChoice = index > currentDataSource.length? dataSource[index] : currentDataSource[index];
 
   const flagReferenceImg = document.querySelector(".selected__flag");
   const code = document.querySelector(".selected__phone__code");
@@ -87,6 +90,9 @@ const setSelectedCountryCode = (index) => {
   flagReferenceImg.width = "25";
   flagReferenceImg.height = "25";
   code.textContent = "+" + filteredChoice.callingCode;
+
+  //Clear the filter field after selection is made
+  filterField.value = "";
 };
 
 // set a default country code to be shown here by manipulating the
@@ -116,7 +122,6 @@ const getFilterValue = (e) => {
     } else {
       // a typical string
       //   console.log("String Detected!");
-
       const filteredItems = dataSource.filter((code) => {
         return code.name.toLowerCase().includes(filterValue.toLowerCase());
       });
@@ -127,7 +132,6 @@ const getFilterValue = (e) => {
         alert("Please choose a more specific country.");
       } else {
         toggleSuggestionsList();
-
         const index = dataSource.findIndex((code) => {
           return code.callingCode === filteredItems[0].callingCode;
         });
@@ -183,7 +187,12 @@ const addEventListenersToSuggestions = () => {
     // console.log("SINGLE_SUGGESTION: ", suggestion);
     suggestion.addEventListener("click", () => {
       // console.log("SELECTED_INDEX: ", index);
-      setSelectedCountryCode(index);
+
+      //Countries are given ids at the moment of population so that 
+      //would be a more definitive way of setting the selected country
+      //rather than the index which could change depending on the state of
+      //the filtered array
+      setSelectedCountryCode(Number(suggestion.id));
       toggleSuggestionsList();
     });
   });
@@ -195,3 +204,19 @@ addEventListenersToSuggestions();
 const getContactValue = (e) => {
   console.log("CONTACT: ", e.target.value);
 };
+
+//Fetching Data From API 
+const fetchData = async () => {
+  const source = "https://restcountries.com/v2/all";
+  const response = await fetch(source);
+  let data = await response.json();
+  data = data.map((country) => {
+    return {name: country.name, callingCode: country.callingCodes[0],flag: country.flags.png}
+  }
+  );
+  dataSource = data;
+  currentDataSource = data;
+  populateSuggestionsList(dataSource);
+  addEventListenersToSuggestions();
+}
+fetchData();
