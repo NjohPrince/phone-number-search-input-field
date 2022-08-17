@@ -110,6 +110,45 @@ const getFilterValue = (e) => {
   console.log("FILTER_VALUE: ", e.target.value);
   const filterValue = e.target.value;
 
+  if (e.keyCode === 13) {
+    /** NaN Check */
+    if (!Number.isNaN(Number(filterValue))) {
+      // console.log("Number Detected!");
+      const index = dataSource.findIndex((code) => {
+        return code.callingCode === filterValue;
+      });
+      //   console.log(index);
+
+      if (index !== -1) {
+        toggleSuggestionsList();
+        setSelectedCountryCode(index);
+      } else {
+        alert("No country found with given code.");
+      }
+    } else {
+      // a typical string
+      //   console.log("String Detected!");
+
+      const filteredItems = dataSource.filter((code) => {
+        return code.name.toLowerCase().includes(filterValue.toLowerCase());
+      });
+
+      if (filteredItems.length === 0) {
+        alert("No country found.");
+      } else if (filteredItems.length > 1) {
+        alert("Please choose a more specific country.");
+      } else {
+        toggleSuggestionsList();
+
+        const index = dataSource.findIndex((code) => {
+          return code.callingCode === filteredItems[0].callingCode;
+        });
+        setSelectedCountryCode(index);
+      }
+    }
+    return;
+  }
+
   if (filterValue !== "" && filterValue !== null && dataSource.length !== 0) {
     let filteredItems = dataSource.filter((code) => {
       return code.callingCode.includes(filterValue);
