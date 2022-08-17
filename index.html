@@ -12,24 +12,37 @@
     <div class="container flex center__items">
       <div class="input__wrapper">
         <div class="search__wrapper flex center__items">
-          <div class="selected__code flex center__items">
+          <div
+            style="cursor: pointer;"
+            class="selected__code flex center__items"
+          >
             <img
               src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
               alt=""
-              width="30"
-              height="30"
+              width="25"
+              height="25"
             />
             <h4>+237</h4>
           </div>
-          <input type="text" placeholder="Enter phone number" />
+          <input
+            onkeyup="getContactValue(event)"
+            id="contact"
+            type="text"
+            placeholder="Enter phone number"
+          />
           <div class="suggestions__list">
-            <input type="text" placeholder="Enter country or phone code">
+            <input
+              onkeyup="getFilterValue(event)"
+              id="filter"
+              type="text"
+              placeholder="Enter country or phone code"
+            />
             <div class="flex">
               <img
                 src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
                 alt=""
-                width="30"
-                height="30"
+                width="25"
+                height="25"
               />
               <h4 class="s_code">+237</h4>
               <h4 class="s_country">Cameroon</h4>
@@ -38,8 +51,8 @@
               <img
                 src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
                 alt=""
-                width="30"
-                height="30"
+                width="25"
+                height="25"
               />
               <h4 class="s_code">+237</h4>
               <h4 class="s_country">Cameroon</h4>
@@ -48,8 +61,8 @@
               <img
                 src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
                 alt=""
-                width="30"
-                height="30"
+                width="25"
+                height="25"
               />
               <h4 class="s_code">+237</h4>
               <h4 class="s_country">Cameroon</h4>

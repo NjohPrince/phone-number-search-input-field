@@ -70,7 +70,9 @@ select:-webkit-autofill:focus {
   border-radius: 35px;
   transition: 0.2s ease-in-out;
   -webkit-transition: 0.2s ease-in-out;
-  padding-left: 10.2rem;
+  object-fit: cover;
+  -o-object-fit: cover;
+  padding-left: 11.2rem;
 }
 
 .input__wrapper input:focus,
@@ -108,6 +110,11 @@ select:-webkit-autofill:focus {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   width: 100%;
+  display: none;
+}
+
+.suggestions__list.show {
+  display: block;
 }
 
 .suggestions__list > div {
@@ -134,12 +141,14 @@ select:-webkit-autofill:focus {
   border-bottom-right-radius: 0;
   text-align: center;
   padding-left: 0;
+  object-fit: cover;
+  -o-object-fit: cover;
   border: 0.2pc solid rgba(0, 0, 0, 0.1);
 }
 
 .suggestions__list input:focus,
 .suggestions__list input:focus-within {
-  border: 0.3pc solid rgba(0, 0, 0, 0.1);
+  border: 0.4pc solid rgba(0, 0, 0, 0.1);
 }
 
 .suggestions__list input::placeholder {
