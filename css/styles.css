@@ -117,7 +117,7 @@ select:-webkit-autofill:focus {
   display: block;
 }
 
-.suggestions__list > div {
+.suggestions__list > div > div {
   padding: 1.2rem;
   width: fit-content;
   cursor: pointer;
@@ -127,7 +127,7 @@ select:-webkit-autofill:focus {
   -webkit-transition: 0.2s ease-in-out;
 }
 
-.suggestions__list > div:hover {
+.suggestions__list > div > div:hover {
   background: #f4f4f4;
 }
 
