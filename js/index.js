@@ -35,17 +35,9 @@ const toggleSuggestionsList = () => {
   suggestionsListWrapper.classList.toggle("show");
 };
 
-// handling filtering change events
-const getFilterValue = (e) => {
-  console.log("FILTER_VALUE: ", e.target.value);
-};
+const populateSuggestionsList = (dataSource) => {
+  suggestionsList.innerHTML = "";
 
-// handling getting the contact entered
-const getContactValue = (e) => {
-  console.log("CONTACT: ", e.target.value);
-};
-
-const populateSuggestionsList = () => {
   dataSource.map((data, index) => {
     const suggestion = document.createElement("div");
     suggestion.classList.add("suggestion");
@@ -80,7 +72,7 @@ const populateSuggestionsList = () => {
   console.log("SUGGESTIONS_LIST: ", suggestionsList);
 };
 
-populateSuggestionsList();
+populateSuggestionsList(dataSource);
 
 // once a suggestion is selected run we fetch the corresponding
 // details from the server and hide the suggestions list
@@ -112,3 +104,38 @@ const setSelectedCountryCode = (index) => {
 // set a default country code to be shown here by manipulating the
 // index value
 setSelectedCountryCode(0);
+
+// handling filtering change events
+const getFilterValue = (e) => {
+  console.log("FILTER_VALUE: ", e.target.value);
+  const filterValue = e.target.value;
+
+  if (filterValue !== "" && filterValue !== null && dataSource.length !== 0) {
+    let filteredItems = dataSource.filter((code) => {
+      return code.callingCode.includes(filterValue);
+    });
+
+    if (filteredItems.length === 0) {
+      filteredItems = dataSource.filter((code) => {
+        return code.name.toLowerCase().includes(filterValue.toLowerCase());
+      });
+    }
+
+    console.log("FILTERED_LIST_AFTER_TYPING: ", filteredItems);
+    if (
+      filteredItems.length === 0 &&
+      (filterValue === "" || filterValue === null)
+    ) {
+      filteredItems = dataSource;
+    }
+
+    populateSuggestionsList(filteredItems);
+  } else {
+    populateSuggestionsList(dataSource);
+  }
+};
+
+// handling getting the contact entered
+const getContactValue = (e) => {
+  console.log("CONTACT: ", e.target.value);
+};
